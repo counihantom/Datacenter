@@ -1,0 +1,10 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Workflow
+metadata:
+  name: wf2
+  namespace: tink-system
+spec:
+  templateRef: resetworkflow
+  hardwareRef: mininuc1
+  hardwareMap:
+    device_1: 00:ce:39:d1:bf:3c
