@@ -1,0 +1,39 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Hardware
+metadata:
+  name: mininuc1
+  namespace: tink-system
+spec:
+  disks:
+    - device: /dev/nvme0n1
+  metadata:
+    facility:
+      facility_code: onprem
+    manufacturer:
+      slug: nuc1
+    instance:
+      userdata: ""
+      hostname: "mininuc3"
+      id: "00:ce:39:d1:bf:3c"
+      operating_system:
+        distro: "clear"
+        os_slug: "clear_37680"
+        version: "37680"
+  interfaces:
+    - dhcp:
+        arch: x86_64
+        hostname: mininuc1
+        iface_name: enp2s0
+        ip:
+          address: 192.168.1.203
+          gateway: 192.168.1.254
+          netmask: 255.255.255.0
+        lease_time: 86400
+        mac: 00:ce:39:d1:bf:3c
+        name_servers:
+          - 1.1.1.1
+          - 8.8.8.8
+        uefi: true
+      netboot:
+        allowPXE: true
+        allowWorkflow: true
