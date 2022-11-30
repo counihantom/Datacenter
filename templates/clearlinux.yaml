@@ -1,0 +1,49 @@
+apiVersion: "tinkerbell.org/v1alpha1"
+kind: Template
+metadata:
+  name: clear
+  namespace: tink-system
+spec:
+  data: |
+    version: "0.1"
+    name: clear
+    global_timeout: 1800
+    tasks:
+      - name: "clearkvm-installation"
+        worker: "{{.device_1}}"
+        volumes:
+          - /dev:/dev
+          - /dev/console:/dev/console
+          - /lib/firmware:/lib/firmware:ro
+        actions:
+          - name: "stream-clear-image"
+            image: quay.io/tinkerbell-actions/image2disk:v1.0.0
+            timeout: 600
+            environment:
+              DEST_DISK: /dev/nvme0n1
+              # Hegel IP
+              #IMG_URL: "https://blaaa/cdimage/openstack/current-10/debian-10-openstack-arm64.raw"
+              #IMG_URL: "http://192.168.1.112:8080/debian-10-openstack-amd64.raw.gz"
+              IMG_URL: "http://192.168.1.112:8080/springvalleySysDNet.img.xz"
+              COMPRESSED: true
+          - name: "write-networkd-config"
+            image: quay.io/tinkerbell-actions/writefile:v1.0.0
+            timeout: 90
+            environment:
+              DEST_DISK: {{ index .Hardware.Disks 0 }}p2
+              FS_TYPE: ext4
+              DEST_PATH: /etc/systemd/network/20-en.network
+              CONTENTS: |                
+                [Match]
+                Name=en*
+                [Network]
+                DHCP=yes
+              UID: 0
+              GID: 0
+              MODE: 0644
+              DIRMODE: 0755  
+#         - name: "reboot"
+#           image: public.ecr.aws/l0g8r8j6/tinkerbell/hub/reboot-action:latest
+#           timeout: 90
+#           volumes:
+#           - /worker:/worker
