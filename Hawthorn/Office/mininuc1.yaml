@@ -37,3 +37,14 @@ spec:
       netboot:
         allowPXE: true
         allowWorkflow: true
+    - dhcp:
+        ip:
+          address: 192.168.1.210
+          gateway: 192.168.1.254
+          netmask: /24
+        lease_time: 86400
+        mac: 00:ce:39:d1:c0:38
+        name_servers:
+          - 1.1.1.1
+          - 8.8.8.8
+
