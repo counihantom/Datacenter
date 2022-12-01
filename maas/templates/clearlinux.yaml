@@ -24,7 +24,8 @@ spec:
               # Hegel IP
               #IMG_URL: "https://blaaa/cdimage/openstack/current-10/debian-10-openstack-arm64.raw"
               #IMG_URL: "http://192.168.1.112:8080/debian-10-openstack-amd64.raw.gz"
-              IMG_URL: "http://192.168.1.112:8080/springvalleySysDNet.img.xz"
+              #IMG_URL: "http://192.168.1.112:8080/springvalleySysDNet.img.xz"
+              IMG_URL: "http://dragonbox.hawthorn.local:81/Images/springvalleySysDNet.img.xz"
               COMPRESSED: true
           - name: "write-networkd-config"
             image: quay.io/tinkerbell-actions/writefile:v1.0.0
