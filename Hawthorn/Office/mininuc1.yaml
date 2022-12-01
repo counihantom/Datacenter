@@ -31,7 +31,7 @@ spec:
         lease_time: 86400
         mac: 00:ce:39:d1:bf:3c
         name_servers:
-          - 1.1.1.1
+          - 192.168.1.175
           - 8.8.8.8
         uefi: true
       netboot:
@@ -45,6 +45,6 @@ spec:
         lease_time: 86400
         mac: 00:ce:39:d1:c0:38
         name_servers:
-          - 1.1.1.1
+          - 192.168.1.176
           - 8.8.8.8
 
